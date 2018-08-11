@@ -1,4 +1,22 @@
-apt-get -y install openjdk-8-jdk maven bash
+apt-get -y install openjdk-8-jdk
+
+echo "******** I N S T A L L I N G      M A V E N  ***************"
+echo "******** I N S T A L L I N G      M A V E N  ***************"
+echo "******** I N S T A L L I N G      M A V E N  ***************"
+echo "******** I N S T A L L I N G      M A V E N  ***************"
+echo "******** I N S T A L L I N G      M A V E N  ***************"
+echo "apt-get -y install maven is the next command..."
+
+apt-get -y install maven
+
+echo "******** I N S T A L L E D      M A V E N  ***************"
+echo "******** I N S T A L L E D      M A V E N  ***************"
+echo "******** I N S T A L L E D      M A V E N  ***************"
+echo "******** I N S T A L L E D      M A V E N  ***************"
+echo "******** I N S T A L L E D      M A V E N  ***************"
+
+
+apt-get -y install bash
 
 # The following lines are to make sure we can install packages from maven
 # See https://bugs.launchpad.net/ubuntu/+source/ca-certificates-java/+bug/1396760
