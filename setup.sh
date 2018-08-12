@@ -7,6 +7,7 @@ echo "******** I N S T A L L I N G      M A V E N  ***************"
 echo "******** I N S T A L L I N G      M A V E N  ***************"
 echo "apt-get -y install maven is the next command..."
 
+apt-get -y update
 apt-get -y install maven
 
 echo "******** I N S T A L L E D      M A V E N  ***************"
