@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "EXECUTING run_autograder from sample-java-mvn-autograder"
+
 base=/autograder
 if [ "$#" -eq 1 ]
 then
@@ -54,6 +56,8 @@ function extract_zip_file {
     fi
     popd	
 }
+
+
 
 expected_zip_pattern="${base}/submission/*.zip"
 zip_files_submitted=( $expected_zip_pattern )
