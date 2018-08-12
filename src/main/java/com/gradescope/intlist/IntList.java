@@ -24,6 +24,7 @@ public class IntList extends AbstractIntList{
      * Creates an IntList from a variable number of arguments
      */
     public static AbstractIntList createList(int... a){
+		return null;
         // TODO: Fill me in!
     }
 
@@ -31,6 +32,7 @@ public class IntList extends AbstractIntList{
      * Appends value to the end of the list
      */
     public AbstractIntList append(int value){
+		return null;
         // TODO: Fill me in!
     }
 
@@ -38,6 +40,7 @@ public class IntList extends AbstractIntList{
      * Returns true if the IntList contains the value
      */
     public boolean contains(int value){
+		return false;
         // TODO: Fill me in!
     }
 
@@ -48,6 +51,7 @@ public class IntList extends AbstractIntList{
      * followed by a newline instead of a space.
      */
     public String toString(){
+		return null;
         // TODO: FIll me in!
     }
 }
