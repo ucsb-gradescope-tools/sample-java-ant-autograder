@@ -76,5 +76,6 @@ else
 	then
 	    chmod u+x grade.sh
 	    ./grade.sh "$1"
+	fi
     fi
 fi
