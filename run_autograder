@@ -17,37 +17,16 @@ function number_matching_files {
 }
 
 
-function extract_zip_file {
-    local zip_file=$1
-
-    zip_file_bare_name=$(basename -- "$zip_file")
-    
-    echo "In function extract_zip_file, zip_file=${zip_file}"
-    echo "In function extract_zip_file, zip_file_bare_name=${zip_file_bare_name}"
-
+function make_flat_student_submission_dir {
     mkdir -p ${base}/STUDENT-WORK
-    cp ${base}/submission/*.zip ${base}/STUDENT-WORK
-    pushd ${base}/STUDENT-WORK
-    echo "output of ls -l and pwd"
-    pwd
-    ls -l
-    if [ ! -f ${zip_file_bare_name} ];
-    then
-	echo "In function extract_zip_file, zip_file_bare_name=${zip_file_bare_name} NOT FOUND, returning error code 1"	
-	return 1
-    fi
+    cp -r ${base}/submission/* ${base}/STUDENT-WORK
 
-    echo "In function extract_zip_file, zip_file_bare_name=${zip_file_bare_name} ... unzipping"	
-    
-    unzip -u ${zip_file_bare_name}
-    /bin/rm ${zip_file_bare_name}
-    
+    pushd ${base}/STUDENT-WORK
+
     number_top_files=$( number_matching_files "./*"  )
     top_files=( ./* )
     top_file="${top_files[0]}"
-    
-    # Be robust to zip files with and without a top level directory
-    
+
     if [ \( $number_top_files -eq 1 \) -a \( "$top_file" != "" \) -a \( -d "${top_file}" \) ];
     then
 	mv ${top_file}/* .
@@ -57,29 +36,10 @@ function extract_zip_file {
     popd	
 }
 
+make_flat_student_submission_dir 
 
-
-expected_zip_pattern="${base}/submission/*.zip"
-zip_files_submitted=( $expected_zip_pattern )
-zip_file="${zip_files_submitted[0]}"
-number_zip_files_submitted=$( number_matching_files ${expected_zip_pattern}  )
-
-if [ ! $number_zip_files_submitted -eq 1 ];
+if [ -f grade-java.sh ];
 then
-    echo '{ "score": 0.0,"output": "ERROR: expected exactly one zip file"}' >  ${base}/results/results.json   
-else
-    
-    echo "The zip file submitted is ${zip_file}"
-    extract_zip_file ${zip_file}
-    if [ $? -eq 1 ];
-    then
-	echo '{ "score": 0.0,"output": "ERROR: could not locate ${zip_file_bare_name}"}' >  ${base}/results/results.json   
-    else
-
-	if [ -f grade.sh ];
-	then
-	    chmod u+x grade.sh
-	    ./grade.sh "$1"
-	fi
-    fi
+    chmod u+x grade-java.sh
+    ./grade-java.sh "$1"
 fi
