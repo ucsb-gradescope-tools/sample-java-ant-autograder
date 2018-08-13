@@ -15,7 +15,7 @@ base=${1:-/autograder}
 
 if [ ! -f ${base}/STUDENT-WORK/IntList.java ];
 then
-    echo '{ "score": 0.0,"output": "ERROR: expected exactly one zip file containing IntList.java"}' >  ${base}/results/results.json
+    echo '{ "score": 0.0,"output": "ERROR: expected IntList.java at top level"}' >  ${base}/results/results.json
 else
     mkdir -p src/main/java/com/gradescope/intlist/
     cp ${base}/STUDENT-WORK/IntList.java src/main/java/com/gradescope/intlist/
