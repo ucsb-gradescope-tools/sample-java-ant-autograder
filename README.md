@@ -1,5 +1,13 @@
 # Gradescope Java+Maven Autograder Example
 
+NOTE: The commit with this comment added works for:
+* submission of IntList.java in a zip file with one level up
+* submission of IntList.java directly.
+
+Next step: make private version and modify so that it works for the Rational assignment.
+
+Dual maintenance on this repo and that private version if anything is done other than modifying grade-java.sh and modifying the assignment itself
+(i.e. the pom.xml and the source code of the base code and instructor tests.)
 
 # Base code from [gradescope-autograder-samples-java-mvn](https://github.com/ucsb-gradescope-tools/gradescope-autograder-samples-java-mvn)
 
