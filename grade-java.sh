@@ -1,6 +1,6 @@
 
 
-base=${1:-autograder}
+base=${1:-/autograder}
 
 # Now ${base}/STUDENT-WORK should contain the unzipped student submission
 # Current directory is the contents of the instructor repo
