@@ -1,10 +1,6 @@
 
 
-base=/autograder
-if [ "$#" -eq 1 ]
-then
-   base=$1
-fi
+base=${1:-autograder}
 
 # Now ${base}/STUDENT-WORK should contain the unzipped student submission
 # Current directory is the contents of the instructor repo
@@ -23,12 +19,12 @@ then
 else
     mkdir -p src/main/java/com/gradescope/intlist/
     cp ${base}/STUDENT-WORK/IntList.java src/main/java/com/gradescope/intlist/
+
+    # Ultimately you want to write to ${base}/results/results.json
+
+    mvn -q compile
+    mvn -q test
+    mvn -q exec:java > ${base}/results/results.json
 fi
 
-
-# Ultimately you want to write to ${base}/results/results.json
-
-mvn -q compile
-mvn -q test
-mvn -q exec:java > ${base}/results/results.json
 
