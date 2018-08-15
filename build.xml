@@ -1,0 +1,66 @@
+<project>
+  
+  <path id="project.class.path"> 
+    <pathelement location="build"/>
+    <pathelement location="lib/junit-4.8.2.jar"/>
+  </path>
+
+  <target name="compile" description="compile the code">
+    <mkdir dir="build" />
+    <javac srcdir="src"
+	   destdir="build"
+	   includeantruntime="false"
+	   debug="true" >
+      <classpath refid="project.class.path" />
+    </javac>
+  </target>
+
+  <target name="clean" description="clean up the project">
+    <delete quiet="true">
+      <fileset dir="build" includes="*.class"/>
+      <fileset dir="build" includes="*.jar"/>
+      <fileset dir="docs" includes="**/*" />
+    </delete>
+  </target>
+
+  <target name="run" description="run the main">
+    <java classname="Rational" classpath="build"/>
+  </target>
+
+  <target name="jar" depends="compile" description="create a jar file">
+    <jar destfile="build/rational.jar">
+      <fileset dir="build" includes="*.class"/>
+      <manifest>
+	<attribute name="Main-Class" value="Rational"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="test" depends="compile" description="run JUnit tests">
+    <junit haltonerror="no" haltonfailure="no">
+      <classpath refid="project.class.path" />
+      <batchtest fork="yes">
+	<fileset dir="src">
+	  <include name="*Test.java"/>
+	</fileset>
+      </batchtest>
+      <formatter type="brief" usefile="false" />
+    </junit>
+  </target>
+  
+  <target name="javadoc" depends="compile" description="generate javadoc">
+    <delete quiet="true">
+      <fileset dir="docs" includes="**/*" />      
+    </delete>
+    <mkdir dir="docs" />
+    <mkdir dir="docs/javadoc" />
+    <javadoc destdir="docs/javadoc">
+      <fileset dir="src" >
+	<include name="*.java"/>
+      </fileset>
+      <classpath refid="project.class.path" />
+      <link href="http://docs.oracle.com/javase/8/docs/api/" />          
+    </javadoc>
+  </target>
+  
+</project>
