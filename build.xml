@@ -23,10 +23,20 @@
     </delete>
   </target>
 
-  <target name="run" description="run the main">
-    <java classname="Rational" classpath="build"/>
+  <target name="run" description="run the main" depends="compile">
+    <java classname="Rational">
+      <classpath refid="project.class.path" />
+    </java>
   </target>
 
+
+  <target name="grade" description="run the main that produces results.json (the grade data for Gradescope)" depends="compile">
+    <java classname="RunTests">
+      <classpath refid="project.class.path" />
+    </java>
+  </target>
+
+  
   <target name="jar" depends="compile" description="create a jar file">
     <jar destfile="build/rational.jar">
       <fileset dir="build" includes="*.class"/>
